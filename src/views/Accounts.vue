@@ -84,6 +84,7 @@ function handleResponse(response, email) {
 
       window.sessionStorage.setItem("token", token);
       window.sessionStorage.setItem("userType", userType);
+      console.log(window.sessionStorage.getItem('userType'));
       Router.push("/");
     });
   else response.text().then((err) => window.alert(err));
@@ -123,7 +124,7 @@ export default {
     login() {
       if (validEmail(this.email) && validPassword(this.password)) {
         let data = { email: this.email, password: String(hash(this.password)) };
-        
+
         fetch(`${serverURL}/logIn`, {
           method: "POST",
           headers: {

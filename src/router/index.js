@@ -66,6 +66,11 @@ const routes = [
     path: "/remCust",
     name: "remCust",
     component: () => import("../views/remCust.vue"),
+  },
+  {
+    path: "/moreOptions",
+    name: "moreOptions",
+    component: () => import("../views/moreOptions.vue"),
   }
 ];
 

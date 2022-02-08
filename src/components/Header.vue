@@ -86,7 +86,7 @@ export default {
       this.$router.push("cart");
     },
     settingPage: function () {
-      this.$router.push("settings");
+      this.$router.push("moreOptions");
     },
     signout: function () {
       if (confirm("Do you really want to signout?")) {
