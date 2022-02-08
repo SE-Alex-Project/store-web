@@ -4,10 +4,11 @@ export default createStore({
   state: {
     serverURL: "http://127.0.0.1:8080",
     user_type: "",
+    products: [],
     show: false,
     sign: false,
-    man:false,
-    page_num:0,
+    man: false,
+    page_num: 0,
   },
   getters: {
     Get_Type: (state) => {
@@ -20,7 +21,7 @@ export default createStore({
     // },
     changeType(state, payload) {
       state.user_type = payload.usertype;
-      if(payload.usertype == "manager"){
+      if (payload.usertype == "manager") {
         this.state.show = false;
         this.state.sign = true;
         this.state.man = true;

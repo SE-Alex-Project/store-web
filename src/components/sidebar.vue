@@ -87,7 +87,7 @@ export default {
         )
           .then((response) => response.json())
           .then((result) => {
-            this.products = result;
+            this.$store.state.products = result;
           })
           .catch((error) => console.log("error", error));
       }
@@ -107,9 +107,8 @@ export default {
       fetch("http://127.0.0.1:8080/product/product_list", requestOptions2)
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result.length > 0) {
-            this.products = result;
+            this.$store.state.products = result;
           }
         })
         .catch((error) => console.log("error", error));
