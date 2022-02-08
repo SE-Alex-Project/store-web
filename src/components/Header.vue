@@ -9,31 +9,31 @@
       </div>
       <ul class="main-nav">
         <li @click="homePage()" title="home page">
-          <a href="#articles"><i class="fas fa-home" id="ico"></i></a>
+          <a ><i class="fas fa-home" id="ico"></i></a>
         </li>
         <li @click="emplPage()" title="empolyees pages">
-          <a href="#articles"><i class="fas fa-address-card" id="ico"> </i></a>
+          <a ><i class="fas fa-address-card" id="ico"> </i></a>
         </li>
         <li
           v-if="!this.$store.state.show && this.$store.state.sign"
           @click="cartsuit()"
         >
-          <a href="#gallery"><i class="fas fa-cart-plus" id="ico"></i></a>
+          <a ><i class="fas fa-cart-plus" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.show" @click="addprod()">
-          <a href="#features"><i class="fas fa-plus-circle" id="ico"></i></a>
+          <a ><i class="fas fa-plus-circle" id="ico"></i></a>
         </li>
         <li @click="userPage()">
-          <a href="#features"><i class="fas fa-user" id="ico"></i></a>
+          <a ><i class="fas fa-user" id="ico"></i></a>
         </li>
         <li @click="settingPage()" class="seet">
-          <a href="#features"><i class="fas fa-users-cog" id="ico"></i></a>
+          <a ><i class="fas fa-users-cog" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.sign" @click="signout()">
-          <a href="#features"><i class="fas fa-sign-out-alt" id="ico"></i></a>
+          <a ><i class="fas fa-sign-out-alt" id="ico"></i></a>
         </li>
         <li class="search_cont" @click="searchbar_show()">
-          <a href="#features"
+          <a
             ><div class="form">
               <i class="fas fa-search" id="searr"></i></div
           ></a>
