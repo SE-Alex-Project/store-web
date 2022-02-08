@@ -23,7 +23,7 @@
         <li v-if="this.$store.state.show || this.$store.state.man " @click="addprod()">
           <a ><i class="fas fa-plus-circle" id="ico"></i></a>
         </li>
-        <li @click="userPage()">
+        <li @click="userPage()" v-if="!(this.$store.state.show || this.$store.state.man) ">
           <a ><i class="fas fa-user" id="ico"></i></a>
         </li>
         <li @click="settingPage()" v-if="this.$store.state.man">
@@ -67,6 +67,10 @@ export default {
       return (document.getElementById("bbox").style.display = "block");
     },
     searchbar_submit: function () {
+      let word =document.getElementById("serch_id").value;
+      document.getElementById("serch_id").value="";
+
+      console.log(word);
       return (document.getElementById("bbox").style.display = "none");
     },
     userPage: function () {
