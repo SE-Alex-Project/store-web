@@ -6,6 +6,7 @@ export default createStore({
     user_type: "",
     show: false,
     sign: false,
+    man:false,
     page_num:0,
   },
   getters: {
@@ -19,15 +20,23 @@ export default createStore({
     // },
     changeType(state, payload) {
       state.user_type = payload.usertype;
-      if (payload.usertype == "employee") {
+      if(payload.usertype == "manager"){
+        this.state.show = false;
+        this.state.sign = true;
+        this.state.man = true;
+      }
+      else if (payload.usertype == "employee") {
         this.state.show = true;
         this.state.sign = true;
+        this.state.man = false;
       } else if (payload.usertype == "customer") {
         this.state.show = false;
         this.state.sign = true;
+        this.state.man = false;
       } else {
         this.state.show = false;
         this.state.sign = false;
+        this.state.man = false;
       }
     },
   },
