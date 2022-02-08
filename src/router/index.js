@@ -47,6 +47,11 @@ const routes = [
     name: "empPages",
     component: () => import("../views/empPages.vue"),
   },
+  {
+    path: "/statistics",
+    name: "StatistcPages",
+    component: () => import("../views/statistics.vue"),
+  },
 ];
 
 const router = createRouter({

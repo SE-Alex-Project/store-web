@@ -114,13 +114,12 @@ export default {
 .emplCart {
   width: 100%;
   height: calc(100vh - (122px));
-    padding: 0 50px 0 50px;
-
+  padding: 0 50px 0 50px;
   background-color: var(--transparent-color);
   color: white;
   display: flex;
   flex-flow: wrap;
-  justify-content: center;
+  align-content: flex-start;
   overflow-y: scroll;
 }
 .box {
