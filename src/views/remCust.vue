@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="subBtn">
-            <div class="btn" @click="remEmp">
+            <div class="btn" @click="remCust">
               REMOVE THE CUSTOMER
             </div>
         </div>
@@ -53,7 +53,7 @@ export default {
         }
     },
     methods: {
-      addEmp() {
+      remCust() {
         
         this.emailBox = this.email;
         this.nameBox = this.name;

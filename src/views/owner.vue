@@ -74,14 +74,14 @@ export default {
         };
     },
     methods: {
-        modifyData(){
+        remCustAcc(){
             console.log("modf");
         },
         addEmp(){
             console.log("addEmp");
         },
-        viewStat(){
-            console.log("viewStat");
+        remCastEmp(){
+            console.log("remCastEmp");
         },
 
         fillMessage(){

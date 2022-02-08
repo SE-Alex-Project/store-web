@@ -53,7 +53,7 @@ export default {
         }
     },
     methods: {
-      addEmp() {
+      remEmp() {
         
         this.emailBox = this.email;
         this.nameBox = this.name;
