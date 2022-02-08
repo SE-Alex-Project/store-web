@@ -8,16 +8,15 @@
       <h2 class="productprice">{{ req_product.price }} EGP</h2>
       <div class="buttoncontainer" v-if="this.$store.state.sign">
         <!-- <button class="addtocart" @click="add_to_cart()">+</button> -->
-        <!-- v-if="!this.$store.state.show" -->
-        <!-- v-else -->
         <div class="outer circle">
           <button
+            v-if="!this.$store.state.show"
             @click="add_to_cart(req_product)"
           >
-            <!-- <img src="../image_test/plus.png" alt="" /> -->
+            <img src="../image_test/plus.png" alt="" />
           </button>
-          <button @click="add_to_cart(req_product)">
-            <!-- <img src="../image_test/x1.png" alt="" /> -->
+          <button v-else @click="add_to_cart(req_product)">
+            <img src="../image_test/x1.png" alt="" />
           </button>
           <span></span>
           <span></span>
