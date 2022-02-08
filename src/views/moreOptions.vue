@@ -14,7 +14,8 @@
         />
         <input v-model="emp_role" type="text" placeholder="Role" />
         <input v-model="emp_salary" type="number" placeholder="Salary" />
-        <input v-model="password" type="password" placeholder="Password" />
+        <input v-model="emp_store" type="number" placeholder="Store ID" />
+        <input v-model="password" type="text" placeholder="Password" />
         <strong class="employee-msg"> </strong>
         <div class="done" @click="addEmpolyee">Done</div>
       </div>
@@ -32,9 +33,9 @@
     <div v-if="pri >= 2">
       <h3 @click="active = active == 'store' ? '' : 'store'">Add Store</h3>
       <div class="input-form" v-show="active == 'store'">
-        <input v-model="new_category" type="text" placeholder="Store Name" />
+        <input v-model="store_name" type="text" placeholder="Store Name" />
         <input
-          v-model="new_category"
+          v-model="store_location"
           type="text"
           placeholder="Store Location"
         />
@@ -46,6 +47,8 @@
 </template>
 
 <script>
+const serverURL = "http://127.0.0.1:8080";
+
 function validName(str) {
   return /^[a-zA-Z]+$/.test(str);
 }
@@ -54,6 +57,19 @@ function validEmail(str) {
 }
 function validPassword(str) {
   return str.length > 7;
+}
+
+function sendData(subURL, data) {
+  fetch(`${serverURL}/${subURL}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) window.alert("Success");
+      else return response.text().then((err) => window.alert(err));
+    })
+    .catch((error) => console.log("error", error));
 }
 
 export default {
@@ -65,8 +81,11 @@ export default {
       email: "",
       emp_role: "",
       emp_salary: "",
+      emp_store: "",
       password: "",
       new_category: "",
+      store_name: "",
+      store_location: "",
       pri: 0, // privilege -> cutomer = 0, employee = 1, manager = 2
     };
   },
@@ -75,11 +94,27 @@ export default {
   },
   methods: {
     addEmpolyee() {
+      if (!this.validateEmployee()) return;
+
+      let data = {
+        token: window.sessionStorage.getItem("token"),
+        email: this.email,
+        firstName: this.firstname,
+        lastName: this.lastname,
+        password: this.password,
+        store: String(this.emp_store),
+        erole: this.emp_role,
+        salary: this.emp_salary,
+      };
+
+      sendData("manager/addEmployee", data);
+    },
+    validateEmployee() {
       let className = "employee-msg";
 
       if (!validName(this.firstname)) {
         this.msg(className, "err", "First Name should be english letters only");
-        return;
+        return false;
       }
       if (!validName(this.lastname)) {
         this.msg(
@@ -87,29 +122,62 @@ export default {
           "err",
           "Second Name should be english letters only"
         );
-        return;
+        return false;
       }
       if (!validEmail(this.email)) {
         this.msg(className, "err", "Invalid email");
-        return;
+        return false;
       }
       if (Number(this.emp_salary) < 0) {
         this.msg(className, "err", "Invalid salary");
-        return;
+        return false;
+      }
+      if (Number(this.emp_store) < 0) {
+        this.msg(className, "err", "Invalid Store ID");
+        return false;
       }
       if (!validPassword(this.password)) {
         this.msg(className, "err", "Invalid password");
-        return;
+        return false;
       }
 
       this.msg(className, "", ""); // reset
-      console.log("everything is ok");
+      return true;
     },
     addCategory() {
-      console.log("cat");
+      let className = "category-msg";
+      if (!validName(this.new_category)) {
+        this.msg(
+          className,
+          "err",
+          "Category Name should be english letters only"
+        );
+        return;
+      }
+      this.msg(className, "", ""); // reset
+
+      let data = {
+        token: window.sessionStorage.getItem("token"),
+        categories: [this.new_category],
+      };
+
+      sendData("product/add_category", data);
     },
     addStore() {
-      console.log("store");
+      let className = "store-msg";
+      if (!this.store_name.length > 1) {
+        this.msg(className, "err", "Invalid Store Name");
+        return;
+      }
+      this.msg(className, "", ""); // reset
+
+      let data = {
+        token: window.sessionStorage.getItem("token"),
+        name: this.store_name,
+        location: this.store_location,
+      };
+
+      sendData("store/add", data);
     },
     msg(className, msgType, msg) {
       let cls = document.querySelector("." + className);

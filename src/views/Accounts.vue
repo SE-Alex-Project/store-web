@@ -84,7 +84,7 @@ function handleResponse(response, email) {
 
       window.sessionStorage.setItem("token", token);
       window.sessionStorage.setItem("userType", userType);
-      console.log(window.sessionStorage.getItem('userType'));
+      console.log(window.sessionStorage.getItem("userType"));
       Router.push("/");
     });
   else response.text().then((err) => window.alert(err));
@@ -210,7 +210,7 @@ export default {
   border-radius: 10px;
   font-size: 1.2em;
   border: none;
-  background-color: #e6e6e6;
+  background-color: white;
 }
 .form-cont span {
   display: inline-block;
