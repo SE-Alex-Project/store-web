@@ -249,6 +249,7 @@ ul {
 .header .main-nav > li > a:hover {
   color: var(--main-color);
   background-color: #fafafa;
+  cursor: pointer;
 }
 .header .main-nav > li > a:hover::before {
   left: 0;

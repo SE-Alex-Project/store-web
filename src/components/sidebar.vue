@@ -70,7 +70,7 @@ export default {
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-          page: Number(this.page_num) + 1,
+          page: Number(this.$store.state.page_num) + 1,
           category: name,
         });
 
@@ -91,6 +91,28 @@ export default {
           })
           .catch((error) => console.log("error", error));
       }
+    },
+    get_product: function () {
+      var myHeaders1 = new Headers();
+      myHeaders1.append("Content-Type", "application/json");
+      var raw1 = JSON.stringify(Number(this.$store.state.page_num) + 1);
+
+      var requestOptions2 = {
+        method: "POST",
+        headers: myHeaders1,
+        body: raw1,
+        redirect: "follow",
+      };
+
+      fetch("http://127.0.0.1:8080/product/product_list", requestOptions2)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result.length > 0) {
+            this.products = result;
+          }
+        })
+        .catch((error) => console.log("error", error));
     },
   },
 };

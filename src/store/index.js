@@ -6,6 +6,7 @@ export default createStore({
     user_type: "",
     show: false,
     sign: false,
+    page_num:0,
   },
   getters: {
     Get_Type: (state) => {
