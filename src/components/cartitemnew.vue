@@ -305,7 +305,7 @@ export default {
 .CartShow {
   width: 100%;
   height: 70vh;
-  padding: 50px;
+  padding: 0 50px;
   background-color: var(--transparent-color);
   color: white;
   display: flex;

@@ -354,7 +354,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 93%;
   height: 90%;
-  padding: 50px;
+  padding: 0 50px;
   background-color: var(--transparent-color);
   color: white;
   display: flex;
