@@ -11,13 +11,13 @@
         <li @click="homePage()" title="home page">
           <a ><i class="fas fa-home" id="ico"></i></a>
         </li>
-        <li @click="emplPage()" title="empolyees pages">
+        <li @click="emplPage()" v-if="this.$store.state.show" title="empolyees pages">
           <a ><i class="fas fa-address-card" id="ico"> </i></a>
         </li>
         <li
           v-if="!this.$store.state.show && this.$store.state.sign"
           @click="cartsuit()"
-        >
+        >   
           <a ><i class="fas fa-cart-plus" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.show" @click="addprod()">

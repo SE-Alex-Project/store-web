@@ -234,7 +234,7 @@ export default {
     Product,
   },
   mounted() {
-     this.$store.commit({
+    this.$store.commit({
       type: "changeType",
       usertype: window.sessionStorage.getItem("userType"),
     });
