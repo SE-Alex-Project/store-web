@@ -9,28 +9,42 @@
       </div>
       <ul class="main-nav">
         <li @click="homePage()" title="home page">
-          <a ><i class="fas fa-home" id="ico"></i></a>
-        </li>
-        <li @click="emplPage()" v-if="this.$store.state.man" title="empolyees pages">
-          <a ><i class="fas fa-address-card" id="ico"> </i></a>
+          <a><i class="fas fa-home" id="ico"></i></a>
         </li>
         <li
-          v-if="!this.$store.state.show && this.$store.state.sign && !this.$store.state.man"
+          @click="emplPage()"
+          v-if="this.$store.state.man"
+          title="empolyees pages"
+        >
+          <a><i class="fas fa-address-card" id="ico"> </i></a>
+        </li>
+        <li
+          v-if="
+            !this.$store.state.show &&
+            this.$store.state.sign &&
+            !this.$store.state.man
+          "
           @click="cartsuit()"
-        >   
-          <a ><i class="fas fa-cart-plus" id="ico"></i></a>
+        >
+          <a><i class="fas fa-cart-plus" id="ico"></i></a>
         </li>
-        <li v-if="this.$store.state.show || this.$store.state.man " @click="addprod()">
-          <a ><i class="fas fa-plus-circle" id="ico"></i></a>
+        <li
+          v-if="this.$store.state.show || this.$store.state.man"
+          @click="addprod()"
+        >
+          <a><i class="fas fa-plus-circle" id="ico"></i></a>
         </li>
-        <li @click="userPage()" v-if="!(this.$store.state.show || this.$store.state.man) ">
-          <a ><i class="fas fa-user" id="ico"></i></a>
+        <li
+          @click="userPage()"
+          v-if="!(this.$store.state.show || this.$store.state.man)"
+        >
+          <a><i class="fas fa-user" id="ico"></i></a>
         </li>
         <li @click="settingPage()" v-if="this.$store.state.man">
-          <a ><i class="fas fa-users-cog" id="ico"></i></a>
+          <a><i class="fas fa-users-cog" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.sign" @click="signout()">
-          <a ><i class="fas fa-sign-out-alt" id="ico"></i></a>
+          <a><i class="fas fa-sign-out-alt" id="ico"></i></a>
         </li>
         <li class="search_cont" @click="searchbar_show()">
           <a
@@ -67,10 +81,29 @@ export default {
       return (document.getElementById("bbox").style.display = "block");
     },
     searchbar_submit: function () {
-      let word =document.getElementById("serch_id").value;
-      document.getElementById("serch_id").value="";
+      let word = document.getElementById("serch_id").value;
+      document.getElementById("serch_id").value = "";
+      var myHeader = new Headers();
+      myHeader.append("Content-Type", "application/json");
+      var raw1 = {
+        searchWord: word,
+        page: Number(this.$store.state.page_num) + 1,
+      };
+      console.log(raw1);
 
-      console.log(word);
+      var requestOptions = {
+        method: "POST",
+        headers: myHeader,
+        body: JSON.stringify(raw1),
+      };
+
+      fetch("http://localhost:8080/product/search", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          alert(result);
+        })
+        .catch((error) => console.log("error", error));
+      // this.$emit("search",word);
       return (document.getElementById("bbox").style.display = "none");
     },
     userPage: function () {

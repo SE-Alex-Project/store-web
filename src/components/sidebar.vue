@@ -87,7 +87,7 @@ export default {
         )
           .then((response) => response.json())
           .then((result) => {
-            this.products = result;
+            this.$store.state.products = result;
           })
           .catch((error) => console.log("error", error));
       }
@@ -109,7 +109,7 @@ export default {
         .then((result) => {
           console.log(result);
           if (result.length > 0) {
-            this.products = result;
+            this.$store.state.products = result;
           }
         })
         .catch((error) => console.log("error", error));
