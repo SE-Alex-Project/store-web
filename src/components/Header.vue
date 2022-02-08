@@ -26,7 +26,7 @@
         <li @click="userPage()">
           <a ><i class="fas fa-user" id="ico"></i></a>
         </li>
-        <li @click="settingPage()" class="seet">
+        <li @click="settingPage()" v-if="this.$store.state.man">
           <a ><i class="fas fa-users-cog" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.sign" @click="signout()">
@@ -110,9 +110,6 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Neonderthaw&family=Pacifico&display=swap");
 /* Start Header */
-.seet {
-  display: none;
-}
 a {
   text-decoration: none;
 }
