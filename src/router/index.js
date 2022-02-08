@@ -52,6 +52,21 @@ const routes = [
     name: "StatistcPages",
     component: () => import("../views/statistics.vue"),
   },
+  {
+    path: "/owner",
+    name: "owner",
+    component: () => import("../views/owner.vue"),
+  },
+  {
+    path: "/remEmp",
+    name: "remEmp",
+    component: () => import("../views/remEmp.vue"),
+  },
+  {
+    path: "/remCust",
+    name: "remCust",
+    component: () => import("../views/remCust.vue"),
+  }
 ];
 
 const router = createRouter({
