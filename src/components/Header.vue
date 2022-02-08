@@ -82,7 +82,9 @@ export default {
     },
     searchbar_submit: function () {
       let word = document.getElementById("serch_id").value;
+      console.log(word);
       document.getElementById("serch_id").value = "";
+      this.$store.state.products={};
       var myHeader = new Headers();
       myHeader.append("Content-Type", "application/json");
       var raw1 = {
@@ -98,12 +100,11 @@ export default {
       };
 
       fetch("http://localhost:8080/product/search", requestOptions)
-        .then((response) => response.text())
+        .then((response) => response.json())
         .then((result) => {
-          alert(result);
+          this.$store.state.products = result;
         })
         .catch((error) => console.log("error", error));
-      // this.$emit("search",word);
       return (document.getElementById("bbox").style.display = "none");
     },
     userPage: function () {
