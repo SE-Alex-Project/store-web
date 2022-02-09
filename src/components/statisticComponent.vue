@@ -7,7 +7,7 @@
         <div class="leftIcon" @click="TOTALSALESPRODUCT()">
           TOTAL SALES PRODUCTS
         </div>
-        <div class="middleIcon" @click="TOP5CUSTOMER()">TOP 5 CUSTOMERS</div>
+        <div class="middleIcon" @click="TOP5CUSTOMER()">TOP 10 CUSTOMERS</div>
         <div class="rightIcon" @click="TOP10PRODUCT()">TOP 10 PRODUCTS</div>
       </div>
       <div class="TOTALSALESBOOK" v-if="condition_top_SALES_product">
