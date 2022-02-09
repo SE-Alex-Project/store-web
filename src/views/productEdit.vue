@@ -127,65 +127,71 @@ export default {
       usertype: window.sessionStorage.getItem("userType"),
     });
     // get categories
-    fetch(`${this.$store.state.serverURL}/product/categories`, {
+    let fetch_cats = fetch(
+      `${this.$store.state.serverURL}/product/categories`,
+      {
+        method: "POST",
+      }
+    );
+
+    let fetch_stores = fetch(`${this.$store.state.serverURL}/store/get_list`, {
       method: "POST",
-    })
+    });
+
+    // get categories, stores
+    Promise.all([fetch_cats, fetch_stores])
       .then((response) => {
-        if (response.ok) {
-          response.json().then((cats) => {
-            this.categories = cats;
-            if (this.mode == addMode) this.category = this.categories[0];
+        if (!response[0].ok)
+          response[0].text().then((err) => {
+            throw err;
           });
-        } else {
-          response.text().then((err) => window.alert(err));
+        if (!response[1].ok)
+          response[1].text().then((err) => {
+            throw err;
+          });
+        return Promise.all([response[0].json(), response[1].json()]);
+      })
+      // update values
+      .then((data) => {
+        this.categories = data[0];
+        this.stores = data[1];
+
+        if (this.mode == addMode) {
+          this.category = this.categories[0];
+          console.log(this.categories);
+          for (let st of this.stores) st.quantity = 0;
         }
       })
-      .catch((error) => console.log("error", error));
-    // get stores
-    fetch(`${this.$store.state.serverURL}/store/get_list`, {
-      method: "POST",
-    })
-      .then((response) => {
-        if (response.ok) {
-          response.json().then((strs) => {
-            this.stores = strs;
-            if (this.mode == addMode) {
-              for (let st of this.stores) st.quantity = 0;
+      // read product data if in modify mode
+      .then(() => {
+        if (this.mode != editMode) return;
+        fetch(`${this.$store.state.serverURL}/product/get?pId=${productId}`)
+          .then((response) => {
+            if (response.ok) {
+              response.json().then((product) => {
+                this.pId = product.id;
+                this.category = product.category;
+                this.name = product.name;
+                this.price = product.price;
+                this.description = product.description;
+                for (let pstore of product.stores)
+                  for (let st of this.stores)
+                    if (st.id == pstore.id) st.quantity = pstore.quantity;
+
+                this.images = [];
+                for (let pimg of product.images) {
+                  this.images.push(image("url", pimg));
+                }
+              });
+            } else {
+              response.text().then((err) => window.alert(err));
+              this.mode = addMode;
+              this.$router.push("/productEdit");
             }
-          });
-        } else {
-          response.text().then((err) => window.alert(err));
-        }
+          })
+          .catch((error) => console.log("error", error));
       })
-      .catch((error) => console.log("error", error));
-
-    if (this.mode == editMode) {
-      fetch(`${this.$store.state.serverURL}/product/get?pId=${productId}`)
-        .then((response) => {
-          if (response.ok) {
-            response.json().then((product) => {
-              this.pId = product.id;
-              this.category = product.category;
-              this.name = product.name;
-              this.price = product.price;
-              this.description = product.description;
-              for (let pstore of product.stores)
-                for (let st of this.stores)
-                  if (st.id == pstore.id) st.quantity = pstore.quantity;
-
-              this.images = [];
-              for (let pimg of product.images) {
-                this.images.push(image("url", pimg));
-              }
-            });
-          } else {
-            response.text().then((err) => window.alert(err));
-            this.mode = addMode;
-            this.$router.push("/productEdit");
-          }
-        })
-        .catch((error) => console.log("error", error));
-    }
+      .catch((error) => window.alert(error));
 
     this.images = [image(), image(), image()];
   },
