@@ -17,7 +17,7 @@
 
         <div class="options">
                 <div class="icon" @click="addEmp">
-                    ADD EMPLOYEE
+                    MODIFY EMPLOYEE
                 </div>
                 <div class="icon" @click="remCustAcc">
                     REMOVE CUSTOMER ACCOUNT
@@ -74,14 +74,23 @@ export default {
         };
     },
     methods: {
+         modEmp(){
+            console.log("addEmp");
+            this.$router.push("modEmp");      
+        },
         remCustAcc(){
             console.log("modf");
+            this.$router.push("remCust");
+
         },
-        addEmp(){
-            console.log("addEmp");
-        },
-        remCastEmp(){
+        remEmpAcc(){
             console.log("remCastEmp");
+            this.$router.push("remEmp");
+        },
+        cartsHistory(){
+            console.log("cartsHistory");
+            this.$router.push("history");
+
         },
 
         fillMessage(){

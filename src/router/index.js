@@ -81,6 +81,11 @@ const routes = [
     path: "/verifyUser",
     name: "verifyUser",
     component: () => import("../views/verifyUser.vue"),
+  },
+  {
+    path: "/modEmp",
+    name: "modEmp",
+    component: () => import("../views/modEmp.vue"),
   }
 ];
 
