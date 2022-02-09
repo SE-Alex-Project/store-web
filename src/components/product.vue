@@ -156,7 +156,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 16px;
   grid-area: name;
   color: var(--text-color);
 }

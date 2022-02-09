@@ -227,7 +227,6 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
   padding: 10px;
   width: 100%;
 }
@@ -304,6 +303,10 @@ h4 {
 .buttonscont .middleIcon:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+.firstName{
+  max-width: 200px;
+  overflow: hidden;
 }
 /**  end buttons headers */
 /* End Landing */
