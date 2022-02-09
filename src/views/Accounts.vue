@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import Router from "../router/index.js";
 const serverURL = "http://localhost:8080/user";
 
 function validName(str) {
@@ -85,7 +84,7 @@ function handleResponse(response, email) {
       window.sessionStorage.setItem("token", token);
       window.sessionStorage.setItem("userType", userType);
       console.log(window.sessionStorage.getItem("userType"));
-      Router.push("/");
+      this.$router.push("verifyUser");
     });
   else response.text().then((err) => window.alert(err));
 }

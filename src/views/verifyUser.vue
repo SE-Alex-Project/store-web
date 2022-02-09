@@ -53,7 +53,7 @@ export default {
       verify() {
           if (this.userEnteredNumber == this.sendNumber){
               alert("your account is verified")
-              // go back to the home 
+              this.$router.push("/");
           }else {
               alert("wrong number");
               this.userEnteredNumber = "";
