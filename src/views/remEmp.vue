@@ -69,6 +69,7 @@ export default {
         this.salary = "";
       }
     }
+    
 
 }
 </script>

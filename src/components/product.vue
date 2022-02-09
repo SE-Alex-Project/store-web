@@ -10,7 +10,7 @@
         <!-- <button class="addtocart" @click="add_to_cart()">+</button> -->
         <div class="outer circle">
           <button
-            v-if="!this.$store.state.show"
+            v-if="!(this.$store.state.show || this.$store.state.man)"
             @click="add_to_cart(req_product)"
           >
             <img src="../image_test/plus.png" alt="" />
@@ -53,7 +53,7 @@ export default {
       }
     },
     add_to_cart: function (req_product) {
-      if (this.$store.state.show) {
+      if (this.$store.state.show || this.$store.state.man) {
         // console.log("delete");
         if (confirm("Do you really want to delete?")) {
           var myHeaders1 = new Headers();

@@ -90,6 +90,10 @@ export default {
     };
   },
   mounted() {
+    this.$store.commit({
+      type: "changeType",
+      usertype: window.sessionStorage.getItem("userType"),
+    });
     this.pri = 2;
   },
   methods: {

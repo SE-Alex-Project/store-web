@@ -19,6 +19,14 @@
           <a><i class="fas fa-address-card" id="ico"> </i></a>
         </li>
         <li
+          @click="statistcPage()"
+          v-if="this.$store.state.man"
+          title="empolyees pages"
+        >
+          <a><i class="fas fa-signal" id="ico"></i></a>
+        </li>
+        
+        <li
           v-if="
             !this.$store.state.show &&
             this.$store.state.sign &&
@@ -40,7 +48,7 @@
         >
           <a><i class="fas fa-user" id="ico"></i></a>
         </li>
-        <li @click="settingPage()" v-if="this.$store.state.man">
+        <li @click="settingPage()" v-if="this.$store.state.man||this.$store.state.show">
           <a><i class="fas fa-users-cog" id="ico"></i></a>
         </li>
         <li v-if="this.$store.state.sign" @click="signout()">
@@ -120,6 +128,10 @@ export default {
     emplPage: function () {
       this.$router.push("empPages");
     },
+    statistcPage: function () {
+      this.$router.push("statistics");
+    },
+    
     cartsuit: function () {
       this.$router.push("cart");
     },

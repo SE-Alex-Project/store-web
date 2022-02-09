@@ -122,7 +122,10 @@ export default {
   mounted() {
     const productId = this.$route.query.pId;
     this.mode = productId ? editMode : addMode;
-
+    this.$store.commit({
+      type: "changeType",
+      usertype: window.sessionStorage.getItem("userType"),
+    });
     // get categories
     fetch(`${this.$store.state.serverURL}/product/categories`, {
       method: "POST",

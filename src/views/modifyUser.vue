@@ -88,6 +88,10 @@ export default {
   },
 
   mounted() {
+    this.$store.commit({
+      type: "changeType",
+      usertype: window.sessionStorage.getItem("userType"),
+    });
     // read email
     // here we should all the original data to show it
     var str = "Email: " + this.email;

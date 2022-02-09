@@ -19,8 +19,16 @@
           <div class="product">
             <div class="nameCont">
               <div class="firstName">
+                <span class="title">Product ID</span>
+                <h4 class="productname">{{ PRODUCTS.productId }}</h4>
+              </div>
+              <div class="firstName">
                 <span class="title">Product Name</span>
-                <h4 class="productname">{{ PRODUCTS.name }}</h4>
+                <h4 class="productname">{{ PRODUCTS.productName }}</h4>
+              </div>
+              <div class="NumdeCont">
+                <span class="title">Price</span>
+                <h4 class="productname">{{ PRODUCTS.price }}</h4>
               </div>
               <div class="NumdeCont">
                 <span class="title">Quantity</span>
@@ -40,11 +48,11 @@
             <div class="nameCont">
               <div class="firstName">
                 <span class="title">Customer Email</span>
-                <h4 class="productname">{{ CUSTOMER.name }}</h4>
+                <h4 class="productname">{{ CUSTOMER.userEmail }}</h4>
               </div>
               <div class="NumdeCont">
                 <span class="title">Money</span>
-                <h4 class="productname">{{ CUSTOMER.quantity }}</h4>
+                <h4 class="productname">{{ CUSTOMER.totalPrice }}</h4>
               </div>
             </div>
           </div>
@@ -60,11 +68,15 @@
             <div class="nameCont">
               <div class="firstName">
                 <span class="title">Product Name</span>
-                <h4 class="productname">{{ PRODUCTS.name }}</h4>
+                <h4 class="productname">{{ PRODUCTS.productName }}</h4>
+              </div>
+              <div class="NumdeCont">
+                <span class="title">Price</span>
+                <h4 class="productname">{{ PRODUCTS.price }}</h4>
               </div>
               <div class="NumdeCont">
                 <span class="title">Quantity</span>
-                <h4 class="productname">{{ PRODUCTS.quantity }}</h4>
+                <h4 class="productname">{{ PRODUCTS.totalSales }}</h4>
               </div>
             </div>
           </div>
@@ -84,95 +96,20 @@ export default {
       condition_top_SALES_product: true,
       condition_top_Customer: false,
       condition_top_product: false,
-      TOTALSALESPRODUCTS: [
-        {
-          name: "String",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          quantity: 5,
-        },
-      ],
-      TOP5CUSTOMERS: [
-        {
-          name: "String",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          quantity: 5,
-        },
-      ],
-      TOP10PRODUCTSS: [
-        {
-          name: "String",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          quantity: 5,
-        },
-      ],
-      products: [
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-      ],
+      TOTALSALESPRODUCTS: [],
+      TOP5CUSTOMERS: [],
+      TOP10PRODUCTSS: [],
     };
   },
   mounted() {
-    this.token = window.sessionStorage.getItem("token");
-    console.log("this is the token " + this.token);
-    console.log("read data");
-    // var requestOptions = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: this.token,
-    // };
-    // console.log(requestOptions.body);
-    // fetch("http://localhost:8080/customer/getCart", requestOptions)
-    //   .then((response) => response.text())
-    //   .then((result) => {
-    //     // here we read the cart from backend
-    //     this.products = JSON.parse(result);
-    //     console.log("results :" + result);
-    //     console.log(this.products);
-    //   })
-    //   .catch((error) => console.text("error", error));
+    fetch("http://localhost:8080/manager/totalSales")
+      .then((response) => response.json())
+      .then((result) => {
+        // here we read the cart from backend
+        console.log(result);
+        this.TOTALSALESPRODUCTS = result;
+      })
+      .catch((error) => console.log("error", error));
   },
 
   methods: {
@@ -181,6 +118,14 @@ export default {
       this.condition_top_SALES_product = true;
       this.condition_top_Customer = false;
       this.condition_top_product = false;
+      fetch("http://localhost:8080/manager/totalSales")
+      .then((response) => response.json())
+      .then((result) => {
+        // here we read the cart from backend
+        console.log(result);
+        this.TOTALSALESPRODUCTS = result;
+      })
+      .catch((error) => console.log("error", error));
     },
 
     TOP5CUSTOMER() {
@@ -188,13 +133,28 @@ export default {
       this.condition_top_SALES_product = false;
       this.condition_top_Customer = true;
       this.condition_top_product = false;
+      fetch("http://localhost:8080/manager/top10Customers")
+      .then((response) => response.json())
+      .then((result) => {
+        // here we read the cart from backend
+        console.log(result);
+        this.TOP5CUSTOMERS = result;
+      })
+      .catch((error) => console.log("error", error));
     },
 
     TOP10PRODUCT() {
-      console.log("remove cart");
       this.condition_top_SALES_product = false;
       this.condition_top_Customer = false;
       this.condition_top_product = true;
+      fetch("http://localhost:8080/manager/top10Sales")
+      .then((response) => response.json())
+      .then((result) => {
+        // here we read the cart from backend
+        console.log(result);
+        this.TOP10PRODUCTSS = result;
+      })
+      .catch((error) => console.log("error", error));
     },
   },
 };
@@ -275,14 +235,14 @@ export default {
 }
 .title {
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   padding-bottom: 2px;
 }
 h4 {
-  font-size: 15px;
+  font-size: 25px;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--main-color);
   margin: 0;
 }
 .EmailCont {

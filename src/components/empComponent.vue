@@ -183,7 +183,7 @@ export default {
 }
 .title {
   color: black;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
   padding-bottom: 2px;
 }

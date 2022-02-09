@@ -10,5 +10,11 @@ export default {
   components: {
     statistcComponent,
   },
+  mounted() {
+    this.$store.commit({
+      type: "changeType",
+      usertype: window.sessionStorage.getItem("userType"),
+    });
+  },
 };
 </script>

@@ -50,6 +50,10 @@ export default {
     };
   },
   mounted() {
+    this.$store.commit({
+      type: "changeType",
+      usertype: window.sessionStorage.getItem("userType"),
+    });
     const pId = this.$route.query.pId;
     if (pId) {
       fetch(`${this.getproductURL}?pId=${pId}`)
