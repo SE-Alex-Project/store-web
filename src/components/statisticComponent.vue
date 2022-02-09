@@ -43,6 +43,7 @@
           class="box"
           v-for="(CUSTOMER, index) in TOP5CUSTOMERS"
           :key="index"
+          @click="showcart(CUSTOMER)"
         >
           <div class="product">
             <div class="nameCont">
@@ -92,7 +93,7 @@ export default {
   name: "statisticComponent",
   data() {
     return {
-      token:"",
+      token: "",
       condition_top_SALES_product: true,
       condition_top_Customer: false,
       condition_top_product: false,
@@ -113,19 +114,24 @@ export default {
   },
 
   methods: {
+    showcart: function (e) {
+      this.$store.state.email_crt = e.userEmail;
+      console.log(this.$store.state.email_crt);
+      this.$router.push("MangerCartView");
+    },
     TOTALSALESPRODUCT() {
       console.log("save Cart");
       this.condition_top_SALES_product = true;
       this.condition_top_Customer = false;
       this.condition_top_product = false;
       fetch("http://localhost:8080/manager/totalSales")
-      .then((response) => response.json())
-      .then((result) => {
-        // here we read the cart from backend
-        console.log(result);
-        this.TOTALSALESPRODUCTS = result;
-      })
-      .catch((error) => console.log("error", error));
+        .then((response) => response.json())
+        .then((result) => {
+          // here we read the cart from backend
+          console.log(result);
+          this.TOTALSALESPRODUCTS = result;
+        })
+        .catch((error) => console.log("error", error));
     },
 
     TOP5CUSTOMER() {
@@ -134,13 +140,13 @@ export default {
       this.condition_top_Customer = true;
       this.condition_top_product = false;
       fetch("http://localhost:8080/manager/top10Customers")
-      .then((response) => response.json())
-      .then((result) => {
-        // here we read the cart from backend
-        console.log(result);
-        this.TOP5CUSTOMERS = result;
-      })
-      .catch((error) => console.log("error", error));
+        .then((response) => response.json())
+        .then((result) => {
+          // here we read the cart from backend
+          console.log(result);
+          this.TOP5CUSTOMERS = result;
+        })
+        .catch((error) => console.log("error", error));
     },
 
     TOP10PRODUCT() {
@@ -148,13 +154,13 @@ export default {
       this.condition_top_Customer = false;
       this.condition_top_product = true;
       fetch("http://localhost:8080/manager/top10Sales")
-      .then((response) => response.json())
-      .then((result) => {
-        // here we read the cart from backend
-        console.log(result);
-        this.TOP10PRODUCTSS = result;
-      })
-      .catch((error) => console.log("error", error));
+        .then((response) => response.json())
+        .then((result) => {
+          // here we read the cart from backend
+          console.log(result);
+          this.TOP10PRODUCTSS = result;
+        })
+        .catch((error) => console.log("error", error));
     },
   },
 };

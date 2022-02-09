@@ -8,6 +8,7 @@ export default createStore({
     show: false,
     sign: false,
     man: false,
+    email_crt:"",
     page_num: 0,
   },
   getters: {

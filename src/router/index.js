@@ -73,6 +73,11 @@ const routes = [
     component: () => import("../views/moreOptions.vue"),
   },
   {
+    path: "/MangerCartView",
+    name: "MangerCartView",
+    component: () => import("../views/MangerCartView.vue"),
+  },
+  {
     path: "/verifyUser",
     name: "verifyUser",
     component: () => import("../views/verifyUser.vue"),
