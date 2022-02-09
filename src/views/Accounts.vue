@@ -74,7 +74,7 @@ function hash(str) {
   return str;
 }
 
-function handleResponse(response, email) {
+function handleResponse(response, email, fname) {
   if (response.ok)
     response.text().then((token) => {
       let userType = "customer";
@@ -83,6 +83,8 @@ function handleResponse(response, email) {
 
       window.sessionStorage.setItem("token", token);
       window.sessionStorage.setItem("userType", userType);
+      window.sessionStorage.setItem("email", email);
+      window.sessionStorage.setItem("name", fname);
       console.log(window.sessionStorage.getItem("userType"));
       this.$router.push("verifyUser");
     });
@@ -154,7 +156,9 @@ export default {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         })
-          .then((response) => handleResponse(response, data.email))
+          .then((response) =>
+            handleResponse(response, data.email, data.firstName)
+          )
           .catch((error) => console.log("error", error));
       } else window.alert("Please verify that all fields are valid");
     },
