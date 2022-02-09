@@ -86,6 +86,11 @@ const routes = [
     path: "/modEmp",
     name: "modEmp",
     component: () => import("../views/modEmp.vue"),
+  },
+  {
+    path: "/catStor",
+    name: "catStor",
+    component: () => import("../views/catStor.vue"),
   }
 ];
 
