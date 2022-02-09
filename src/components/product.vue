@@ -98,6 +98,7 @@ export default {
             if (response.ok) {
               response.text().then((result) => {
                 console.log(result);
+                window.alert('Item has been added to your cart');
               });
             } else {
               response.text().then((err) => window.alert(err));
