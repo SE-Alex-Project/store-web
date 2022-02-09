@@ -16,7 +16,7 @@
         </div>
 
         <div class="options">
-                <div class="icon" @click="addEmp">
+               <!-- <div class="icon" @click="modEmp">
                     MODIFY EMPLOYEE
                 </div>
                 <div class="icon" @click="remCustAcc">
@@ -25,6 +25,7 @@
                 <div class="icon" @click="remEmpAcc">
                     REMOVE EMPLOYEE ACCOUNT
                 </div>
+                -->
                 <!--
                 
                 <div class="icon" @click="modifyData">
@@ -93,7 +94,6 @@ export default {
         cartsHistory(){
             console.log("cartsHistory");
             this.$router.push("history");
-
         },
 
         

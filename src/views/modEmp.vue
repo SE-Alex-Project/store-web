@@ -96,6 +96,12 @@ export default {
     input.value = str;
     this.token = window.sessionStorage.getItem("token");
     //for test
+    /*
+    for youssef >> 1.read the email
+    this.email = ..;
+    this.password = ..;
+    */
+    this.password = "12345678";
     this.email = "test@employee.com"
     var myHeader = new Headers();
     myHeader.append("Content-Type", "application/json");
@@ -114,15 +120,16 @@ export default {
     console.log(requestOptions.body);
 
     fetch("http://localhost:8080/manager/getEmployeeInfo", requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        this.firstname = result.firstName;
-        this.lastname = result.lastName;
+        this.firstname = result.fName;
+        this.lastname = result.lName;
         this.email = result.email;
-        this.storeNum = result.store;
-        this.erole = result.role;
+        this.storeNum = result.storeId;
+        this.erole = result.erole;
         this.salary = result.salary;
+
       })
       .catch((error) => console.log("error", error));
   },
