@@ -73,6 +73,10 @@ export default {
             ]
         };
     },
+    mounted() {
+
+    },
+
     methods: {
          modEmp(){
             console.log("addEmp");
@@ -93,37 +97,7 @@ export default {
 
         },
 
-        fillMessage(){
-            let rand = Math.floor((Math.random() * 9999) + 1000);
-            console.log(rand);
-            this.message = "your verification number is " + rand;
-            console.log(this.message);
-        },
-        sendEmail(){ // sending email method to be written in another place for verification
-          this.fillMessage();
-          console.log({
-                                    customer_name: this.name,
-                                    message: this.message,
-                                    customer_email: this.email     
-                                  })
-          try {
-                emailjs.send('service_it8ctuw',
-                             'template_jtc7jst',
-                              {
-                                customer_name: this.name,
-                                message: this.message,
-                                customer_email: this.email     
-                              },
-                              'user_qNHmSzCgV5SwiEW2FjmPZ')
-            }
-            catch (error) {
-                console.log({error});
-            }
-
-            this.name = '';
-            this.email = '';
-            this.message = '';
-        }
+        
 
         
     }
