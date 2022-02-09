@@ -1,94 +1,109 @@
 <template>
-  <div class="productModify-cont">
-    <div class="step-title">
-      <div :class="'title ' + t_product" @click="chooseMe('prod')">Product</div>
-      <div :class="'title ' + t_stores" @click="chooseMe('store')">Stores</div>
-      <div :class="'title ' + t_images" @click="chooseMe('image')">Images</div>
-    </div>
-    <div class="step-detail">
-      <div class="product" v-show="t_product">
-        <label>Category: </label>
-        <select v-model="category">
-          <option v-for="cat in categories" :key="cat" :value="cat">
-            {{ cat }}
-          </option>
-        </select>
-        <label>Name</label>
-        <input type="text" v-model="name" />
-        <label>Price (EGP)</label>
-        <input
-          type="number"
-          min="0"
-          onkeypress="return event.charCode >= 46"
-          v-model="price"
-        />
-        <label>Description</label>
-        <textarea type="text" v-model="description" />
-      </div>
-      <div class="stores" v-show="t_stores">
-        <table>
-          <thead>
-            <th>Store</th>
-            <th>Quantity</th>
-          </thead>
-          <tr v-for="(s, i) in stores" :key="i">
-            <td>{{ s.name }}</td>
-            <td>
+  <!-- Start Landing -->
+  <div class="landing">
+    <div class="overlay"></div>
+    <div class="container1">
+      <div class="emplCart">
+        <div class="productModify-cont">
+          <div class="step-title">
+            <div :class="'title ' + t_product" @click="chooseMe('prod')">
+              Product
+            </div>
+            <div :class="'title ' + t_stores" @click="chooseMe('store')">
+              Stores
+            </div>
+            <div :class="'title ' + t_images" @click="chooseMe('image')">
+              Images
+            </div>
+          </div>
+          <div class="step-detail">
+            <div class="product" v-show="t_product">
+              <label>Category: </label>
+              <select v-model="category">
+                <option v-for="cat in categories" :key="cat" :value="cat">
+                  {{ cat }}
+                </option>
+              </select>
+              <label>Name</label>
+              <input type="text" v-model="name" />
+              <label>Price (EGP)</label>
               <input
                 type="number"
-                onkeypress="return event.charCode >= 48"
                 min="0"
-                v-model="s.quantity"
+                onkeypress="return event.charCode >= 46"
+                v-model="price"
               />
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div v-show="t_images">
-        <table class="images-table">
-          <thead style="display: none">
-            <th></th>
-          </thead>
-          <tr v-for="(p, i) in images" :key="i">
-            <td style="width: 5%">{{ i + 1 }}</td>
-            <td style="width: 25%">
-              <img
-                v-show="p.url"
-                :src="p.url"
-                style="width: 100%"
-                alt="product"
-              />
-            </td>
-            <td>
-              <div class="input-image">
-                <input
-                  v-show="p.mode == 'url'"
-                  type="url"
-                  v-model="p.url"
-                  placeholder="Image url"
-                />
-                <input v-show="p.mode == 'file'" type="file" />
-                <strong>or</strong>
-                <div
-                  class="btn"
-                  v-text="p.mode == 'url' ? 'Upload' : 'Use url'"
-                  @click="changeInputMode(p)"
-                ></div>
-              </div>
-            </td>
-            <td><span class="del" @click="delimage(i)">✘</span></td>
-          </tr>
-        </table>
-        <div class="btn add" @click="incimages">+</div>
-      </div>
-    </div>
-    <div class="submition">
-      <p class="err-msg"></p>
-      <div class="btn" @click="submit()">
-        {{ mode == 1 ? "Add product" : "Submit Modifications" }}
+              <label>Description</label>
+              <textarea type="text" v-model="description" />
+            </div>
+            <div class="stores" v-show="t_stores">
+              <table>
+                <thead>
+                  <th>Store</th>
+                  <th>Quantity</th>
+                </thead>
+                <tr v-for="(s, i) in stores" :key="i">
+                  <td>{{ s.name }}</td>
+                  <td>
+                    <input
+                      type="number"
+                      onkeypress="return event.charCode >= 48"
+                      min="0"
+                      v-model="s.quantity"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div v-show="t_images">
+              <table class="images-table">
+                <thead style="display: none">
+                  <th></th>
+                </thead>
+                <tr v-for="(p, i) in images" :key="i">
+                  <td style="width: 5%">{{ i + 1 }}</td>
+                  <td style="width: 25%">
+                    <img
+                      v-show="p.url"
+                      :src="p.url"
+                      style="width: 100%"
+                      alt="product"
+                    />
+                  </td>
+                  <td>
+                    <div class="input-image">
+                      <input
+                        v-show="p.mode == 'url'"
+                        type="url"
+                        v-model="p.url"
+                        placeholder="Image url"
+                      />
+                      <input v-show="p.mode == 'file'" type="file" />
+                      <strong>or</strong>
+                      <div
+                        class="btn"
+                        v-text="p.mode == 'url' ? 'Upload' : 'Use url'"
+                        @click="changeInputMode(p)"
+                      ></div>
+                    </div>
+                  </td>
+                  <td><span class="del" @click="delimage(i)">✘</span></td>
+                </tr>
+              </table>
+              <div class="btn add" @click="incimages">+</div>
+            </div>
+          </div>
+          <div class="submition">
+            <p class="err-msg"></p>
+            <div class="btn" @click="submit()">
+              {{ mode == 1 ? "Add product" : "Submit Modifications" }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <!-- End Landing -->
 </template>
 
 <script>
@@ -288,11 +303,48 @@ export default {
 * {
   font-size: 2vw;
 }
+.landing {
+  width: 100%;
+  min-height: calc(100vh - (82px));
+  background-color: #1f2021;
+  background-image: url("../assets/back.jpg");
+  background-size: cover;
+  position: relative;
+}
+.landing .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 60%);
+}
+.container1 {
+  position: relative;
+  padding: 20px;
+}
+/* End Landing */
+.emplCart {
+  width: 100%;
+  height: calc(100vh - (122px));
+  padding: 0 50px 0 50px;
+  background-color: var(--transparent-color);
+  color: white;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
 input,
 textarea {
   border: 1px solid;
+  outline: none;
+  border-radius: 10px;
   font-family: inherit;
-  background-color: aliceblue;
+  background-color:rgba(142, 131, 131, 0.5);
+  color: white;
+
 }
 .productModify-cont {
   width: 90%;
@@ -316,13 +368,14 @@ textarea {
   color: white;
 }
 .title {
-  background-color: #6200ee;
+  transition: var(--tran-05);
 }
 .title:hover {
   cursor: pointer;
+  transform: translateY(-4px);
 }
 .choosen {
-  background-color: #09cdf0;
+  background-color:rgb(15 116 143 / 80%);
 }
 .step-detail {
   padding: 10px;
@@ -336,12 +389,14 @@ textarea {
   display: inline-block;
   padding: 5px;
   border-radius: 5px;
-  color: white;
-  background-color: #6200ee;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  transition: var(--tran-05);
 }
 .btn:hover {
   cursor: pointer;
-  opacity: 0.8;
+  color: rgb(255, 255, 255);
+  background-color: #09c3f1;
 }
 .err-msg {
   font-size: 0.8em;
@@ -357,8 +412,11 @@ textarea {
 .product select {
   display: block;
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 10px;
   width: 100%;
+  background-color:rgba(142, 131, 131, 0.5);
+  color: white;
+  font-weight: bold;
 }
 textarea {
   height: 30vh;
@@ -390,7 +448,7 @@ td input {
   display: flex;
   gap: 5px;
   align-items: center;
-  background-color: aliceblue;
+  background-color: rgba(142, 131, 131, 0.5);
 }
 .input-image strong {
   padding: 5px;

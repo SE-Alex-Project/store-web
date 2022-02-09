@@ -149,7 +149,7 @@ export default {
   min-height: 200px;
   background: #eff3f3;
   border: 3px rgb(9, 205, 240);
-  box-shadow: 0px 0px 35px rgb(166, 170, 170);
+  box-shadow: 0px 0px 35px rgb(166, 169, 170);
   margin: 1rem;
   transition: var(--tran-05);
 }
