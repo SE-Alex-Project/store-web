@@ -48,44 +48,7 @@ export default {
   name: "cartItemnew",
   data() {
     return {
-      products: [
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Number",
-          quantity: 5,
-        },
-      ],
+      products: [],
     };
   },
 
@@ -320,6 +283,10 @@ export default {
   border: 3px rgb(9, 205, 240);
   box-shadow: 0px 0px 35px rgb(166, 170, 170);
   margin: 1rem;
+  transition: var(--tran-05);
+}
+.box:hover {
+  transform: scale(1.1);
 }
 .box .product {
   height: 100%;
