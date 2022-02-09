@@ -1,35 +1,43 @@
 <template>
-  <div class="grid-cont">
-    <div class="product-imgs">
-      <div class="main-img-cont">
-        <img class="main-img" :src="image_f()" alt="product" />
-      </div>
-      <div class="sub-imgs">
-        <div v-for="img in images" :key="img">
-          <img :src="img" alt="" @click="reqeur_show(img)" />
-        </div>
-      </div>
-    </div>
-    <div class="product-info">
-      <h1 class="product-name">{{ name }}</h1>
-      <hr />
-      <div class="description">
-        <div class="price_cont">
-          <strong>Price: </strong>
-          <span class="price"> {{ price }} </span>
-          <span class="currency"> EGP</span>
-        </div>
+  <!-- Start Landing -->
+  <div class="landing">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="emplCart">
+        <div class="grid-cont">
+          <div class="product-imgs">
+            <div class="main-img-cont">
+              <img class="main-img" :src="image_f()" alt="product" />
+            </div>
+            <div class="sub-imgs">
+              <div v-for="img in images" :key="img">
+                <img :src="img" alt="" @click="reqeur_show(img)" />
+              </div>
+            </div>
+          </div>
+          <div class="product-info">
+            <h1 class="product-name">{{ name }}</h1>
+            <hr />
+            <div class="description">
+              <div class="price_cont">
+                <strong>Price: </strong>
+                <span class="price"> {{ price }} </span>
+                <span class="currency"> EGP</span>
+              </div>
 
-        <p>description</p>
-        <p class="des">{{ description }}</p>
-        <hr />
-      </div>
-      <div class="props"></div>
-      <div class="center" v-if="this.$store.state.sign">
-        <div class="outer button" @click="add_to_cart()">
-          <button>add to cart</button>
-          <span></span>
-          <span></span>
+              <p>description</p>
+              <p class="des">{{ description }}</p>
+              <hr />
+            </div>
+            <div class="props"></div>
+            <div class="center" v-if="this.$store.state.sign">
+              <div class="outer button" @click="add_to_cart()">
+                <button>add to cart</button>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -111,6 +119,43 @@ export default {
 </script>
 
 <style scoped>
+/* Start Landing */
+
+.landing {
+  width: 100%;
+  min-height: calc(100vh - (82px));
+  background-color: #1f2021;
+  background-image: url("../assets/back.jpg");
+  background-size: cover;
+  position: relative;
+}
+.landing .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 60%);
+}
+.container {
+  position: relative;
+  padding: 20px;
+}
+
+.emplCart {
+  width: 100%;
+  height: calc(100vh - (122px));
+  padding: 0 50px 0 50px;
+  background-color: var(--transparent-color);
+  color: white;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+/* End Landing */
+
 /* layout style*/
 .grid-cont {
   display: grid;
@@ -130,27 +175,25 @@ export default {
   overflow-x: auto;
   border-width: 4px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
+  border-color: rgb(255 255 255 / 20%);
 }
 .sub-imgs div {
   width: 250px;
   height: 190px;
   margin: 0 10px 0 10px;
   box-shadow: 0px 0px 35px rgb(166, 170, 170);
-  border-radius: 20px 50px;
   transition: transform 0.5s;
 }
 
 .sub-imgs div:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
 .sub-imgs div img {
   width: inherit;
   height: inherit;
   object-fit: fill;
   padding: 1px;
-  border-radius: 20px 50px;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -159,7 +202,6 @@ export default {
 }
 .grid-cont .product-info h1 {
   color: white;
-  background: #6200ee;
   border-radius: 20px;
   padding: 5px;
 }
@@ -187,19 +229,16 @@ export default {
   justify-content: center;
   font-size: 35px;
   color: white;
-  background: #6200ee;
   border-radius: 20px;
   padding: 5px;
   margin-top: 10px;
 }
 .grid-cont .product-info .description .des {
-  /* border-radius: 50%; */
-  background: #ffffff;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   height: 300px;
   border-width: 2px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
+  border-color: white;
   font-size: 30px;
   padding: 10px;
   margin-top: 10px;
@@ -216,7 +255,7 @@ export default {
 /****************/
 .main-img-cont {
   width: 100%;
-  height: 600px;
+  /* height: 400px; */
   margin-bottom: 20px;
 }
 .main-img {
@@ -224,15 +263,15 @@ export default {
   width: inherit;
   height: inherit;
   box-shadow: 0px 0px 35px rgb(166, 170, 170);
-  border-radius: 70px 100px;
-  transition: transform 0.5s;
+  transition: transform 0.3s;
 }
 .main-img:hover {
   cursor: pointer;
-  transform: scale(1.02);
+  transform: translateY(-6px);
 }
 hr {
   margin: 10px 0;
+  color: white;
 }
 .description {
   text-align: start;
@@ -250,7 +289,7 @@ hr {
 .outer {
   position: relative;
   margin: 0 50px;
-  background: #111;
+  background: rgb(240, 224, 224);
 }
 .button {
   height: 70px;
