@@ -25,7 +25,7 @@
                 <span class="title">salary</span>
                 <h4 class="Email">{{ empl.salary }}</h4>
               </div>
-              <div>
+              <div>   
                 <span class="title">Role</span>
                 <h4 class="Email">{{ empl.erole }}</h4>
               </div>
