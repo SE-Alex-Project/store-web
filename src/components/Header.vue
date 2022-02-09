@@ -137,6 +137,11 @@ export default {
     },
     settingPage: function () {
       this.$router.push("moreOptions");
+      // if (this.$store.state.show || this.$store.state.man) {
+      //   this.$router.push("moreOptions");
+      // } else {
+      //   this.$router.push("moreOptions");
+      // }
     },
     signout: function () {
       if (confirm("Do you really want to signout?")) {
