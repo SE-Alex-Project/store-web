@@ -20,9 +20,19 @@
                 <h4 class="productname">{{ empl.storeId }}</h4>
               </div>
             </div>
+            <div class="SECont">
+              <div>
+                <span class="title">salary</span>
+                <h4 class="Email">{{ empl.salary }}</h4>
+              </div>
+              <div>
+                <span class="title">Role</span>
+                <h4 class="Email">{{ empl.erole }}</h4>
+              </div>
+            </div>
             <div class="EmailCont">
-              <span class="title">Email</span>
-              <h4 class="Email">{{ empl.email }}</h4>
+                <span class="title">Email</span>
+                <h4 class="Email">{{ empl.email }}</h4>
             </div>
             <div class="buttoncontainer2">
               <span class="iconcon" @click="delete_emp(empl)">
@@ -165,7 +175,6 @@ export default {
 }
 
 .nameCont {
-  padding: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -193,12 +202,27 @@ h4 {
   color: var(--main-color);
   margin: 0;
 }
+@media (max-width: 767px) {
+  h4 {
+    font-size: 15px;
+  }
+  .title {
+    font-size: 10px;
+  }
+}
 .EmailCont {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 10px;
+  width: 100%;
+}
+
+.SECont{
+display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
 }
 .buttoncontainer2 {
