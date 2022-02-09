@@ -71,6 +71,11 @@ const routes = [
     path: "/moreOptions",
     name: "moreOptions",
     component: () => import("../views/moreOptions.vue"),
+  },
+  {
+    path: "/verifyUser",
+    name: "verifyUser",
+    component: () => import("../views/verifyUser.vue"),
   }
 ];
 
