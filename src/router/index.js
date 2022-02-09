@@ -71,7 +71,12 @@ const routes = [
     path: "/moreOptions",
     name: "moreOptions",
     component: () => import("../views/moreOptions.vue"),
-  }
+  },
+  {
+    path: "/MangerCartView",
+    name: "MangerCartView",
+    component: () => import("../views/MangerCartView.vue"),
+  },
 ];
 
 const router = createRouter({
