@@ -36,15 +36,15 @@
 
           <div class="edit">
             <input v-model="storeNum" type="text" placeholder="StoreNumber" />
-            <span>{{ StoreNumError }}</span>
+            <span></span>
           </div>
           <div class="edit">
             <input v-model="erole" type="text" placeholder="Employee Role" />
-            <span>{{ EmployeeRoleError }}</span>
+            <span></span>
           </div>
           <div class="edit">
             <input v-model="salary" type="text" placeholder="Salary" />
-            <span>{{ salaryError }}</span>
+            <span></span>
           </div>
           
           <div class="done" @click="saveData">SAVE DATA</div>
@@ -95,33 +95,34 @@ export default {
     var input = document.getElementById("emailTxt");
     input.value = str;
     this.token = window.sessionStorage.getItem("token");
-
+    //for test
+    this.email = "ahmed@ahmed.ahmed"
     var myHeader = new Headers();
     myHeader.append("Content-Type", "application/json");
     var raw1 = {
         token: this.token,
         email: this.email,
-        fName: this.firstname,
-        lName: this.lastname,
-        storeId : this.storeNum
     };
     console.log(raw1);
 
     var requestOptions = {
       method: "POST",
       headers: myHeader,
-      body: raw1,
+      body: JSON.stringify(raw1),
     };
 
     console.log(requestOptions.body);
 
     fetch("http://localhost:8080/manager/getEmployeeInfo", requestOptions)
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((result) => {
         console.log(result);
         this.firstname = result.firstName;
         this.lastname = result.lastName;
         this.email = result.email;
+        this.storeNum = result.store;
+        this.erole = result.role;
+        this.salary = result.salary;
       })
       .catch((error) => console.log("error", error));
   },

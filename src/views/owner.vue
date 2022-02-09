@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
 export default {
     // import emailjs from "file of downloading the library";
     name: "owner",
