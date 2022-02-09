@@ -165,7 +165,7 @@ export default {
     },
     addStore() {
       let className = "store-msg";
-      if (!this.store_name.length > 1) {
+      if (this.store_name.length < 1) {
         this.msg(className, "err", "Invalid Store Name");
         return;
       }
