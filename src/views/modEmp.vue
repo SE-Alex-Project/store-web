@@ -83,7 +83,7 @@ export default {
       salary: "",
     };
   },
-
+ 
   mounted() {
     this.$store.commit({
       type: "changeType",
@@ -96,7 +96,7 @@ export default {
     input.value = str;
     this.token = window.sessionStorage.getItem("token");
     //for test
-    this.email = "ahmed@ahmed.ahmed"
+    this.email = "test@employee.com"
     var myHeader = new Headers();
     myHeader.append("Content-Type", "application/json");
     var raw1 = {
