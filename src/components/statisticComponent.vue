@@ -80,6 +80,7 @@ export default {
   name: "statisticComponent",
   data() {
     return {
+      token:"",
       condition_top_SALES_product: true,
       condition_top_Customer: false,
       condition_top_product: false,
@@ -157,21 +158,21 @@ export default {
     this.token = window.sessionStorage.getItem("token");
     console.log("this is the token " + this.token);
     console.log("read data");
-    var requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: this.token,
-    };
-    console.log(requestOptions.body);
-    fetch("http://localhost:8080/customer/getCart", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        // here we read the cart from backend
-        this.products = JSON.parse(result);
-        console.log("results :" + result);
-        console.log(this.products);
-      })
-      .catch((error) => console.text("error", error));
+    // var requestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: this.token,
+    // };
+    // console.log(requestOptions.body);
+    // fetch("http://localhost:8080/customer/getCart", requestOptions)
+    //   .then((response) => response.text())
+    //   .then((result) => {
+    //     // here we read the cart from backend
+    //     this.products = JSON.parse(result);
+    //     console.log("results :" + result);
+    //     console.log(this.products);
+    //   })
+    //   .catch((error) => console.text("error", error));
   },
 
   methods: {

@@ -4,28 +4,28 @@
     <div class="overlay"></div>
     <div class="container">
       <div class="emplCart">
-        <div class="box" v-for="(product, index) in products" :key="index">
+        <div class="box" v-for="(empl, index) in empls" :key="index">
           <div class="product">
             <div class="nameCont">
               <div class="firstName">
                 <span class="title">First Name</span>
-                <h4 class="productname">{{ product.name }}</h4>
+                <h4 class="productname">{{ empl.fName }}</h4>
               </div>
               <div class="secondName">
                 <span class="title">Second Name</span>
-                <h4 class="productname">{{ product.name }}</h4>
+                <h4 class="productname">{{ empl.lName }}</h4>
               </div>
               <div class="NumdeCont">
                 <span class="title">Store Number</span>
-                <h4 class="productname">{{ product.quantity }}</h4>
+                <h4 class="productname">{{ empl.storeId }}</h4>
               </div>
             </div>
             <div class="EmailCont">
               <span class="title">Email</span>
-              <h4 class="Email">{{ product.price }}</h4>
+              <h4 class="Email">{{ empl.email }}</h4>
             </div>
             <div class="buttoncontainer2">
-              <span class="iconcon">
+              <span class="iconcon" @click="delete_emp(empl)">
                 <i class="fas fa-user-times"></i>
               </span>
             </div>
@@ -42,48 +42,70 @@ export default {
   name: "cartItemnew",
   data() {
     return {
-      products: [
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-        {
-          name: "String",
-          count: "Number",
-          price: "Yousefhassan121999@gmail.com",
-          quantity: 5,
-        },
-      ],
+      empls: [],
     };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = window.sessionStorage.getItem("token");
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    fetch("http://127.0.0.1:8080/manager/getEmployees", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        this.empls = result;
+      })
+      .catch((error) => console.log("error", error));
+  },
+  methods: {
+    delete_emp: function (empl) {
+      console.log(empl);
+
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      var raw = JSON.stringify({
+        token: window.sessionStorage.getItem("token"),
+        email: empl.email,
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+      fetch("http://127.0.0.1:8080/user/removeAccount", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+          this.get_emp();
+        })
+        .catch((error) => console.log("error", error));
+    },
+    get_emp: function () {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      var raw = window.sessionStorage.getItem("token");
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+      fetch("http://127.0.0.1:8080/manager/getEmployees", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          this.empls = result;
+        })
+        .catch((error) => console.log("error", error));
+    },
+  },
 };
 </script>
 
@@ -166,9 +188,9 @@ export default {
   padding-bottom: 2px;
 }
 h4 {
-  font-size: 15px;
+  font-size: 25px;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--main-color);
   margin: 0;
 }
 .EmailCont {

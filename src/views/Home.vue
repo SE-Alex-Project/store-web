@@ -157,31 +157,6 @@ export default {
     updateCart: function () {
       this.get_product();
     },
-    // search(e) {
-    //   console.log("start search");
-    //   var myHeader = new Headers();
-    //   myHeader.append("Content-Type", "application/json");
-    //   var raw1 = {
-    //     searchWord: e,
-    //     page: Number(this.$store.state.page_num) + 1,
-    //   };
-    //   console.log(raw1);
-
-    //   var requestOptions = {
-    //     method: "POST",
-    //     headers: myHeader,
-    //     body: JSON.stringify(raw1),
-    //   };
-
-    //   fetch("http://localhost:8080/product/search", requestOptions)
-    //     .then((response) => response.text())
-    //     .then((result) => {
-    //       alert(result);
-    //       console.log(result);
-    //       this.$router.push("/");
-    //     })
-    //     .catch((error) => console.log("error", error));
-    // },
   },
 };
 </script>
