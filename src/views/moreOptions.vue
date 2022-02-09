@@ -1,49 +1,68 @@
 <template>
-  <div class="cont">
-    <div v-if="pri >= 2">
-      <h3 @click="active = active == 'employee' ? '' : 'employee'">
-        Add Employee
-      </h3>
-      <div class="input-form" v-show="active == 'employee'">
-        <input v-model="firstname" type="text" placeholder="First Name" />
-        <input v-model="lastname" type="text" placeholder="Last Name" />
-        <input
-          v-model="email"
-          type="email"
-          placeholder="anyname@employee.com"
-        />
-        <input v-model="emp_role" type="text" placeholder="Role" />
-        <input v-model="emp_salary" type="number" placeholder="Salary" />
-        <input v-model="emp_store" type="number" placeholder="Store ID" />
-        <input v-model="password" type="text" placeholder="Password" />
-        <strong class="employee-msg"> </strong>
-        <div class="done" @click="addEmpolyee">Done</div>
-      </div>
-    </div>
-    <div v-if="pri >= 1">
-      <h3 @click="active = active == 'category' ? '' : 'category'">
-        Add Category
-      </h3>
-      <div class="input-form" v-show="active == 'category'">
-        <input v-model="new_category" type="text" placeholder="Category Name" />
-        <strong class="category-msg"> </strong>
-        <div class="done" @click="addCategory">Done</div>
-      </div>
-    </div>
-    <div v-if="pri >= 2">
-      <h3 @click="active = active == 'store' ? '' : 'store'">Add Store</h3>
-      <div class="input-form" v-show="active == 'store'">
-        <input v-model="store_name" type="text" placeholder="Store Name" />
-        <input
-          v-model="store_location"
-          type="text"
-          placeholder="Store Location"
-        />
-        <strong class="store-msg"> </strong>
-        <div class="done" @click="addStore">Done</div>
+  <!-- Start Landing -->
+  <div class="landing">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="emplCart">
+        <div class="cont">
+          <div v-if="pri >= 2">
+            <h3 @click="active = active == 'employee' ? '' : 'employee'">
+              Add Employee
+            </h3>
+            <div class="input-form" v-show="active == 'employee'">
+              <input v-model="firstname" type="text" placeholder="First Name" />
+              <input v-model="lastname" type="text" placeholder="Last Name" />
+              <input
+                v-model="email"
+                type="email"
+                placeholder="anyname@employee.com"
+              />
+              <input v-model="emp_role" type="text" placeholder="Role" />
+              <input v-model="emp_salary" type="number" placeholder="Salary" />
+              <input v-model="emp_store" type="number" placeholder="Store ID" />
+              <input v-model="password" type="text" placeholder="Password" />
+              <strong class="employee-msg"> </strong>
+              <div class="done" @click="addEmpolyee">Done</div>
+            </div>
+          </div>
+          <div v-if="pri >= 1">
+            <h3 @click="active = active == 'category' ? '' : 'category'">
+              Add Category
+            </h3>
+            <div class="input-form" v-show="active == 'category'">
+              <input
+                v-model="new_category"
+                type="text"
+                placeholder="Category Name"
+              />
+              <strong class="category-msg"> </strong>
+              <div class="done" @click="addCategory">Done</div>
+            </div>
+          </div>
+          <div v-if="pri >= 2">
+            <h3 @click="active = active == 'store' ? '' : 'store'">
+              Add Store
+            </h3>
+            <div class="input-form" v-show="active == 'store'">
+              <input
+                v-model="store_name"
+                type="text"
+                placeholder="Store Name"
+              />
+              <input
+                v-model="store_location"
+                type="text"
+                placeholder="Store Location"
+              />
+              <strong class="store-msg"> </strong>
+              <div class="done" @click="addStore">Done</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <!-- End Landing -->
 </template>
 
 <script>
@@ -204,54 +223,95 @@ export default {
 </script>
 
 <style scoped>
+/* Start Landing */
+
+.landing {
+  width: 100%;
+  min-height: calc(100vh - (82px));
+  background-color: #1f2021;
+  background-image: url("../assets/back.jpg");
+  background-size: cover;
+  position: relative;
+}
+.landing .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 60%);
+}
+.container {
+  position: relative;
+  padding: 20px;
+  height: calc(100vh - (122px));
+}
+.emplCart {
+  width: 100%;
+  height: calc(100vh - (122px));
+  padding: 0 50px 0 50px;
+  background-color: var(--transparent-color);
+  color: white;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+}
 .cont {
   display: inline-block;
-  margin-top: 20px;
-  width: 80%;
+  width: 100%;
 }
 .cont > div {
   width: 100%;
   margin-bottom: 20px;
-  background-color: var(--text-color);
+  background-color:rgb(15 116 143 / 70%);
   user-select: none;
 }
 h3 {
   margin: 0;
   padding: 7.5px;
-  text-align: start;
   color: var(--primary-color-light);
+  font-size: 20px;
+  font-weight: bold;
+  transition: var(--tran-05);
 }
 h3:hover {
   cursor: pointer;
-  background-color: var(--primary-color);
+  background-color: var(--main-color);
 }
 .input-form {
   padding: 10px;
-  background-color: darkgray;
+  transition: var(--tran-05);
 }
 .input-form input {
   display: block;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
   font-size: 1rem;
   border: none;
-  background-color: #e6e6e6;
+  outline: none;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bold;
 }
 .done {
   margin: auto;
-  padding: 7.5px;
+  padding: 15px;
   width: 200px;
   min-width: fit-content;
   border-radius: 10px;
-  font-size: 1rem;
-  color: white;
-  background-color: darkslateblue;
+  color: rgb(2, 2, 2);
+  background-color: rgb(255, 255, 255);
+  font-size: 25px;
   font-weight: bold;
+  transition: var(--tran-05);
 }
 .done:hover {
   cursor: pointer;
-  opacity: 0.8;
+  color: rgb(255, 255, 255);
+  background-color: var(--main-color);
 }
 .err {
   display: block;
