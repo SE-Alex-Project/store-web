@@ -102,7 +102,7 @@ export default {
     this.password = ..;
     */
     this.password = "12345678";
-    this.email = "test@employee.com"
+    this.email =  this.$store.state.email_crt
     var myHeader = new Headers();
     myHeader.append("Content-Type", "application/json");
     var raw1 = {

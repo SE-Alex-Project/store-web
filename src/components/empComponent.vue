@@ -4,7 +4,7 @@
     <div class="overlay"></div>
     <div class="container">
       <div class="emplCart">
-        <div class="box" v-for="(empl, index) in empls" :key="index">
+        <div class="box" v-for="(empl, index) in empls" :key="index" @click="modifyemp(empl)">
           <div class="product">
             <div class="nameCont">
               <div class="firstName">
@@ -74,6 +74,10 @@ export default {
       .catch((error) => console.log("error", error));
   },
   methods: {
+    modifyemp:function(e){
+      this.$store.state.email_crt = e.email;
+      this.$router.push("modEmp");
+    },
     delete_emp: function (empl) {
       console.log(empl);
 
