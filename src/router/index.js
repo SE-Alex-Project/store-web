@@ -77,6 +77,11 @@ const routes = [
     name: "MangerCartView",
     component: () => import("../views/MangerCartView.vue"),
   },
+  {
+    path: "/verifyUser",
+    name: "verifyUser",
+    component: () => import("../views/verifyUser.vue"),
+  }
 ];
 
 const router = createRouter({
