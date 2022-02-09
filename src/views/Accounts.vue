@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import Router from "../router/index.js";
 const serverURL = "http://localhost:8080/user";
 
 function validName(str) {
@@ -86,7 +87,10 @@ function handleResponse(response, email, fname) {
       window.sessionStorage.setItem("email", email);
       window.sessionStorage.setItem("name", fname);
       console.log(window.sessionStorage.getItem("userType"));
-      this.$router.push("verifyUser");
+      
+      // fname is defined when signup only, go to verifyuser page 
+      if (fname) Router.push("verifyUser");
+      else Router.push("/");
     });
   else response.text().then((err) => window.alert(err));
 }
