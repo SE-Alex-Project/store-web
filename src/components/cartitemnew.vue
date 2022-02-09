@@ -344,13 +344,14 @@ export default {
 }
 .title {
   color: black;
-  font-size: 25px;
-  font-weight: bold;
-}
-h4 {
   font-size: 15px;
   font-weight: bold;
-  color: var(--text-color);
+  padding-bottom: 2px;
+}
+h4 {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--main-color);
   margin: 0;
 }
 .priceCont {
